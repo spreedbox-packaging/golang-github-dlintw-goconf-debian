@@ -1,0 +1,97 @@
+2012-05-08  Stephen Weinberg  <stephen@q5comm.com>
+
+	* AUTHORS, COPYRIGHT, conf.go, conf/AUTHORS, conf/COPYRIGHT,
+	conf/conf.go, conf/conf_test.go, conf/get.go, conf/read.go,
+	conf/write.go, conf_test.go, get.go, read.go, write.go:
+	Moved files into conf directory.
+	[a4db5c465ed1] [tip]
+
+	* COPYRIGHT, Makefile, conf.go, conf_test.go, get.go, read.go,
+	write.go:
+	Updated for Go 1 Removed variable feature until a fix for the test
+	panics is found.
+
+	Fixed bugs 15, 16, 17, 18, 20
+	[7907cf2db50d]
+
+2011-06-27  Stephen Weinberg  <stephen@q5comm.com>
+
+	* Makefile, conf.go, get.go, read.go, write.go:
+	Update so it compiles Fixed issue 4 Fixed issue 8 Fixed issue 9
+	Fixed issue 10 Fixed issue 11
+	[2eb26b86ef3e]
+
+2010-08-22  stephen  <stephen@q5comm.com>
+
+	* get.go, write.go:
+	Fixed issue 7
+	[b3f4e5735324]
+
+2010-06-22  stephen  <stephen@q5comm.com>
+
+	* conf.go, read.go:
+	Removed firstIndex and replaced with strings.IndexAny
+	[bd671a69e6b3]
+
+	* conf.go, read.go:
+	Moved stripComments to read.go.
+	[f54dc0de6e4e]
+
+2010-04-19  Stephen Weinberg  <stephen@q5comm.com>
+
+	* conf_test.go, read.go:
+	Fix bug 3
+	[d151df4e8d75]
+
+2010-04-08  Stephen Weinberg  <stephen@q5comm.com>
+
+	* conf.go, conf_test.go, get.go, read.go, write.go:
+	ran gofmt
+	[019a1fae3d93]
+
+2010-04-04  Stephen Weinberg  <stephen@q5comm.com>
+
+	* conf_test.go:
+	Updated test to include empty section strings.
+	[8e6d717d8a7b]
+
+	* conf.go:
+	Improve inline documetation
+	[2facc3df7276]
+
+	* get.go:
+	Assume empty section string means "default" in Get*() and Has*().
+	[fbb9b0bc5bf3]
+
+2010-03-31  Stephen Weinberg  <stephen@q5comm.com>
+
+	* conf_test.go, read.go:
+	Fixed bug 1
+	[cb28dc0cd914]
+
+2010-03-30  Stephen Weinberg  <stephen@q5comm.com>
+
+	* conf_test.go:
+	Added test
+	[3f3df9d8189d]
+
+2010-03-29  Stephen Weinberg  <stephen@q5comm.com>
+
+	* conf.go, write.go:
+	Edited comments
+	[740dbc0cc3c5]
+
+	* Makefile, conf.go:
+	Makefile changed
+	[cfa188bb603b]
+
+2010-03-28  Stephen Weinberg  <stephen@q5comm.com>
+
+	* Makefile:
+	Added Makefile
+	[c9768adaed66]
+
+	* AUTHORS, COPYRIGHT, conf.go, get.go, read.go, write.go:
+	First import
+	[612da94b0885]
+
