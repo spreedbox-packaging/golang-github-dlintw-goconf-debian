@@ -1,0 +1,5 @@
+golang-goconf (0.1+hg20140310-1) precise; urgency=low
+
+  * Initial release.
+
+ -- Lance Cooper <lance@struktur.de>  Mon, 10 Mar 2014 11:14:02 -0500
