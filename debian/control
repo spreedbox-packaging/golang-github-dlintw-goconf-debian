@@ -10,7 +10,7 @@ Standards-Version: 3.9.3
 
 Package: golang-goconf-dev
 Pre-Depends: dpkg (>= 1.15.6~)
-Architecture: any
+Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Goconf is a configuration file parser for Golang.
  It is based on goconfig. Goconf has a few new features:
