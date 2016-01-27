@@ -4,28 +4,30 @@
 
 export DH_OPTIONS
 
-export DH_GOPKG := code.google.com/p/goconf
+export DH_GOPKG_LEGACY := code.google.com/p/goconf
+export DH_GOPKG := github.com/dlintw/goconf
 TMPGOPATH = $(CURDIR)/debian/tmp/usr/share/gocode
 
-get-orig-source: $(PKG)_$(VER)$(DTYPE).orig.tar.xz
-
-## Based on https://wiki.debian.org/onlyjob/get-orig-source
 PKD = $(abspath $(dir $(MAKEFILE_LIST)))
 PKG = $(word 2,$(shell dpkg-parsechangelog -l$(PKD)/changelog | grep ^Source))
 UVER = $(shell dpkg-parsechangelog -l$(PKD)/changelog | perl -ne 'print $$1 if m{^Version:\s+(?:\d+:)?(\d.*)(?:\-\d+.*)};')
 DTYPE = 
 VER ?= $(subst $(DTYPE),,$(UVER))
-UURL = http://code.google.com/p/goconf/
+
+get-orig-source: $(PKG)_$(VER)$(DTYPE).orig.tar.xz
+
+## Based on https://wiki.debian.org/onlyjob/get-orig-source
+UURL = http://github.com/dlintw/goconf/
 UDATE = $(shell date --utc --date='TZ="UTC" $(shell echo $(VER) | perl -ne 'print "$$1-$$2-$$3" if m/\+(?:git|svn|hg)(\d{4})(\d{2})(\d{2})/')' "+%F")
-BRANCH = default
+BRANCH = master
 $(PKG)_$(VER)$(DTYPE).orig.tar.xz: $(info I: UDATE=$(UDATE))
 		$(if $(wildcard $(PKG)-$(VER)),$(error $(PKG)-$(VER) exist, aborting..))
-		hg clone --branch $(BRANCH) $(UURL) $(PKG)-$(VER) || $(RM) -r $(PKG)-$(VER)
+		git clone --branch $(BRANCH) $(UURL) $(PKG)-$(VER) || $(RM) -r $(PKG)-$(VER)
 		cd $(PKG)-$(VER) \
-		&& hg update --date "<$(UDATE)" \
-		&& [ -s ChangeLog ] || ( echo "# Generating ChangeLog..." \
-		&& hg log --style=changelog --date "<$(UDATE)" > ChangeLog ) \
-		&& $(RM) -r .hg .hg* \
+		&& git checkout `git rev-list -n 1 --before="$(UDATE)" $(BRANCH)` \
+		&& echo "# Generating ChangeLog..." \
+		&& git log `git rev-list -n 1 --before="$(UDATE)" $(BRANCH)` > ChangeLog \
+		&& $(RM) -r .git .git* \
 		@echo "# Packing..."
 		find -L "$(PKG)-$(VER)" -xdev -type f -print | sort \
 		| XZ_OPT="-6v" tar -caf "$(PKG)_$(VER)$(DTYPE).orig.tar.xz" -T- --owner=root --group=root --mode=a+rX \
@@ -35,6 +37,10 @@ override_dh_auto_install:
 		mkdir -p ${TMPGOPATH}/src/${DH_GOPKG}
 # Copy all .go files to /usr/share/gocode (we compile and ship).
 		find . -path ./debian -prune -o -type f -name "*.go" -exec tar cf - {} + | (cd "${TMPGOPATH}/src/${DH_GOPKG}" && tar xvf -)
+		# NOTE: We still provide the files on their old code.google.com path.
+		mkdir -p ${TMPGOPATH}/src/${DH_GOPKG_LEGACY}
+# Copy all .go files to /usr/share/gocode (we compile and ship).
+		find . -path ./debian -prune -o -type f -name "*.go" -exec tar cf - {} + | (cd "${TMPGOPATH}/src/${DH_GOPKG_LEGACY}" && tar xvf -)
 
 %:
 		dh $@ --with=golang
