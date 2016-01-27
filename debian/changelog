@@ -1,3 +1,11 @@
+golang-goconf (0.2+20160127-1) precise; urgency=low
+
+  * Get orig tarball from new Github repository and install to both old and new locations.
+  * Imported Upstream version 0.2+20160127
+  * Don't run build/test steps, fixed location/package of legacy installation.
+
+ -- Joachim Bauch <bauch@struktur.de>  Wed, 27 Jan 2016 12:14:58 +0100
+
 golang-goconf (0.1+hg20140310-4) precise; urgency=low
 
   * Build for arch all, no binaries are produced by this package.
