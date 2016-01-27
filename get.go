@@ -1,4 +1,4 @@
-package conf
+package goconf
 
 import (
 	"strconv"
@@ -11,7 +11,7 @@ func (c *ConfigFile) GetSections() (sections []string) {
 	sections = make([]string, len(c.data))
 
 	i := 0
-	for s, _ := range c.data {
+	for s := range c.data {
 		sections[i] = s
 		i++
 	}
@@ -45,11 +45,11 @@ func (c *ConfigFile) GetOptions(section string) (options []string, err error) {
 
 	options = make([]string, len(c.data[DefaultSection])+len(c.data[section]))
 	i := 0
-	for s, _ := range c.data[DefaultSection] {
+	for s := range c.data[DefaultSection] {
 		options[i] = s
 		i++
 	}
-	for s, _ := range c.data[section] {
+	for s := range c.data[section] {
 		options[i] = s
 		i++
 	}
@@ -104,6 +104,34 @@ func (c *ConfigFile) GetString(section string, option string) (value string, err
 	value, err = c.GetRawString(section, option)
 	if err != nil {
 		return "", err
+	}
+
+	section = strings.ToLower(section)
+
+	var i int
+
+	for i = 0; i < DepthValues; i++ { // keep a sane depth
+		loc := varRegExp.FindStringIndex(value)
+		if loc == nil {
+			break
+		}
+		noption := value[loc[0]+2 : loc[1]-2] // "%(host)s"->"host"
+		noption = strings.ToLower(noption)
+
+		nvalue, _ := c.data[DefaultSection][noption] // search variable in default section
+		if _, ok := c.data[section][noption]; ok {
+			nvalue = c.data[section][noption]
+		}
+		if nvalue == "" {
+			return "", GetError{OptionNotFound, "", "", section, option}
+		}
+
+		// substitute by new value and take off leading '%(' and trailing ')s'
+		value = value[0:loc[0]] + nvalue + value[loc[1]:]
+	}
+
+	if i == DepthValues {
+		return "", GetError{MaxDepthReached, "", "", section, option}
 	}
 
 	return value, nil

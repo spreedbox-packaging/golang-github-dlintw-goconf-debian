@@ -14,7 +14,7 @@
 //
 // To read this configuration file, do:
 //
-//	c, err := conf.ReadConfigFile("server.conf")
+//	c, err := goconf.ReadConfigFile("server.conf")
 //	c.GetString("default", "host")               // returns example.com
 //	c.GetInt("", "port")                         // returns 443 (assumes "default")
 //	c.GetBool("", "php")                         // returns true
@@ -27,7 +27,7 @@
 //
 // Goconfig's string substitution syntax has not been removed. However, it may be
 // taken out or modified in the future.
-package conf
+package goconf
 
 import (
 	"fmt"
@@ -101,7 +101,7 @@ func (c *ConfigFile) RemoveSection(section string) bool {
 	case section == DefaultSection:
 		return false // default section cannot be removed
 	default:
-		for o, _ := range c.data[section] {
+		for o := range c.data[section] {
 			delete(c.data[section], o)
 		}
 		delete(c.data, section)
