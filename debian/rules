@@ -33,14 +33,21 @@ $(PKG)_$(VER)$(DTYPE).orig.tar.xz: $(info I: UDATE=$(UDATE))
 		| XZ_OPT="-6v" tar -caf "$(PKG)_$(VER)$(DTYPE).orig.tar.xz" -T- --owner=root --group=root --mode=a+rX \
 		&& $(RM) -r "$(PKG)-$(VER)"
 
+override_dh_auto_build:
+		## no building required
+
+override_dh_auto_test:
+		## disable tests
+
 override_dh_auto_install:
 		mkdir -p ${TMPGOPATH}/src/${DH_GOPKG}
 # Copy all .go files to /usr/share/gocode (we compile and ship).
 		find . -path ./debian -prune -o -type f -name "*.go" -exec tar cf - {} + | (cd "${TMPGOPATH}/src/${DH_GOPKG}" && tar xvf -)
 		# NOTE: We still provide the files on their old code.google.com path.
-		mkdir -p ${TMPGOPATH}/src/${DH_GOPKG_LEGACY}
-# Copy all .go files to /usr/share/gocode (we compile and ship).
-		find . -path ./debian -prune -o -type f -name "*.go" -exec tar cf - {} + | (cd "${TMPGOPATH}/src/${DH_GOPKG_LEGACY}" && tar xvf -)
+		mkdir -p ${TMPGOPATH}/src/${DH_GOPKG_LEGACY}/conf
+		find . -path ./debian -prune -o -type f -name "*.go" -exec tar cf - {} + | (cd "${TMPGOPATH}/src/${DH_GOPKG_LEGACY}/conf" && tar xvf -)
+		find "${TMPGOPATH}/src/${DH_GOPKG_LEGACY}/conf" -name "*.go" -exec sed -i 's/package goconf/package conf/' {} \;
+
 
 %:
 		dh $@ --with=golang
