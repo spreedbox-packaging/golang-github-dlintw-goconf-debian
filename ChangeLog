@@ -1,97 +1,131 @@
-2012-05-08  Stephen Weinberg  <stephen@q5comm.com>
+commit dcc070983490608a14480e3bf943bad464785df5
+Author: Daniel YC Lin <dlin.tw@gmail.com>
+Date:   Tue Feb 28 16:26:10 2012 +0800
 
-	* AUTHORS, COPYRIGHT, conf.go, conf/AUTHORS, conf/COPYRIGHT,
-	conf/conf.go, conf/conf_test.go, conf/get.go, conf/read.go,
-	conf/write.go, conf_test.go, get.go, read.go, write.go:
-	Moved files into conf directory.
-	[a4db5c465ed1] [tip]
+    update url to document
 
-	* COPYRIGHT, Makefile, conf.go, conf_test.go, get.go, read.go,
-	write.go:
-	Updated for Go 1 Removed variable feature until a fix for the test
-	panics is found.
+commit 13e9e66145609d2066155e9217b1e2922ecd1f6e
+Author: Daniel YC Lin <dlin.tw@gmail.com>
+Date:   Tue Feb 28 16:22:31 2012 +0800
 
-	Fixed bugs 15, 16, 17, 18, 20
-	[7907cf2db50d]
+    rename file name to goconf*
 
-2011-06-27  Stephen Weinberg  <stephen@q5comm.com>
+commit 913cd84858fc961c485f13cbb949d489cd8110e6
+Author: Daniel YC Lin <dlin.tw@gmail.com>
+Date:   Tue Feb 28 16:19:49 2012 +0800
 
-	* Makefile, conf.go, get.go, read.go, write.go:
-	Update so it compiles Fixed issue 4 Fixed issue 8 Fixed issue 9
-	Fixed issue 10 Fixed issue 11
-	[2eb26b86ef3e]
+    fix format
 
-2010-08-22  stephen  <stephen@q5comm.com>
+commit 17a92d2cdb9dcdfa95287f6036458fb41893c9a7
+Author: Daniel YC Lin <dlin.tw@gmail.com>
+Date:   Tue Feb 28 16:16:34 2012 +0800
 
-	* get.go, write.go:
-	Fixed issue 7
-	[b3f4e5735324]
+    Port to Go 1 spec, rename package name as goconf.
+    Fix bug of get.go for suitable for Go1's FindStringIndex()
 
-2010-06-22  stephen  <stephen@q5comm.com>
+commit c6367f3454b878fac129755a155b43a35fa992a6
+Author: Andreas Krennmair <ak@synflood.at>
+Date:   Sun Jan 29 02:05:47 2012 +0100
 
-	* conf.go, read.go:
-	Removed firstIndex and replaced with strings.IndexAny
-	[bd671a69e6b3]
+    fixed compile errors.
 
-	* conf.go, read.go:
-	Moved stripComments to read.go.
-	[f54dc0de6e4e]
+commit bf7cc3a37c3a2580a84fd5b5e0426e21e82efee5
+Author: Andreas Krennmair <ak@synflood.at>
+Date:   Sun Jan 29 01:52:54 2012 +0100
 
-2010-04-19  Stephen Weinberg  <stephen@q5comm.com>
+    make goconf compile with latest weekly.
 
-	* conf_test.go, read.go:
-	Fix bug 3
-	[d151df4e8d75]
+commit f602e48a7b0f6bfcfc7fcad6b1aaca25cf5291c9
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Mon Jun 27 11:04:32 2011 -0400
 
-2010-04-08  Stephen Weinberg  <stephen@q5comm.com>
+    Update so it compiles
+    Fixed issue 4
+    Fixed issue 8
+    Fixed issue 9
+    Fixed issue 10
+    Fixed issue 11
 
-	* conf.go, conf_test.go, get.go, read.go, write.go:
-	ran gofmt
-	[019a1fae3d93]
+commit 63d75cbe774e241fddeed9de4e22c6c8046a1a33
+Author: stephen <stephen@q5comm.com>
+Date:   Sun Aug 22 06:17:36 2010 -0400
 
-2010-04-04  Stephen Weinberg  <stephen@q5comm.com>
+    Fixed issue 7
 
-	* conf_test.go:
-	Updated test to include empty section strings.
-	[8e6d717d8a7b]
+commit bd314801c3b4cb8f1e0d404d13a083c9228110c2
+Author: stephen <stephen@q5comm.com>
+Date:   Tue Jun 22 07:37:46 2010 -0400
 
-	* conf.go:
-	Improve inline documetation
-	[2facc3df7276]
+    Removed firstIndex and replaced with strings.IndexAny
 
-	* get.go:
-	Assume empty section string means "default" in Get*() and Has*().
-	[fbb9b0bc5bf3]
+commit 8f74ead862c3fa3cddaf4b4b3236abef3b835602
+Author: stephen <stephen@q5comm.com>
+Date:   Tue Jun 22 07:30:23 2010 -0400
 
-2010-03-31  Stephen Weinberg  <stephen@q5comm.com>
+    Moved stripComments to read.go.
 
-	* conf_test.go, read.go:
-	Fixed bug 1
-	[cb28dc0cd914]
+commit 06ccb310d52c0c09d72e58083dda19d1fd0d5cbb
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Mon Apr 19 20:34:51 2010 -0400
 
-2010-03-30  Stephen Weinberg  <stephen@q5comm.com>
+    Fix bug 3
 
-	* conf_test.go:
-	Added test
-	[3f3df9d8189d]
+commit 4cea74d15d4ec6503cb7d3bd97e44d7bc1f33bae
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Thu Apr 8 13:39:05 2010 -0400
 
-2010-03-29  Stephen Weinberg  <stephen@q5comm.com>
+    ran gofmt
 
-	* conf.go, write.go:
-	Edited comments
-	[740dbc0cc3c5]
+commit 5817e58bf837cab739639fe6465508faf63b4f37
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Sun Apr 4 20:32:27 2010 -0400
 
-	* Makefile, conf.go:
-	Makefile changed
-	[cfa188bb603b]
+    Updated test to include empty section strings.
 
-2010-03-28  Stephen Weinberg  <stephen@q5comm.com>
+commit f654f432babb0778bc9a5f69b3eb578a516cc071
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Sun Apr 4 20:27:02 2010 -0400
 
-	* Makefile:
-	Added Makefile
-	[c9768adaed66]
+    Improve inline documetation
 
-	* AUTHORS, COPYRIGHT, conf.go, get.go, read.go, write.go:
-	First import
-	[612da94b0885]
+commit d77149c9efc807831757e8f0a8406c74d98c1639
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Sun Apr 4 20:26:36 2010 -0400
 
+    Assume empty section string means "default" in Get*() and Has*().
+
+commit 75568b8038ed8b3d4f1d0b07f3f14c5d5d0c817b
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Wed Mar 31 15:39:10 2010 -0400
+
+    Fixed bug 1
+
+commit 272452f813dc02b5720a8e0ff33993ee0a1a34d6
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Tue Mar 30 13:58:34 2010 -0400
+
+    Added test
+
+commit dbe859620b0a427c0a8b2ee8d17235310a4a58ae
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Mon Mar 29 01:44:35 2010 -0400
+
+    Edited comments
+
+commit 0db041f3a4ac7fa1cac98c9e6a2a1f51fc0774e7
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Mon Mar 29 00:24:03 2010 -0400
+
+    Makefile changed
+
+commit f45ce435b398a183edbb9a7b29f6dbfa502bb92e
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Sun Mar 28 19:53:38 2010 -0400
+
+    Added Makefile
+
+commit c49f1b4ed9e4da1806c16c6b334053cb9a55fd38
+Author: Stephen Weinberg <stephen@q5comm.com>
+Date:   Sun Mar 28 18:44:26 2010 -0400
+
+    First import
